@@ -1,0 +1,16 @@
+{% extends 'customer/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid text-white text-center" style="background-image: url('{% static 'bg-image.jpg' %}'); background-size: cover; height: 100vh; margin-bottom: 0;">
+    <div class="container d-flex align-items-center justify-content-center h-100">
+        <div>
+            <h1 class="display-4 font-weight-bold">Welcome to Online Food Delivery</h1>
+            <p class="lead">Order your favorite meals from the best restaurants!</p>
+            <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-4">
+                Explore Our Store <i class="fas fa-utensils"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'customer/base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Carousel Section -->
+{% include 'customer/carousel.html' %}
+
+<!-- Header Section -->
+<div class="container border rounded text-center my-5">
+    <div class=" text-black p-5 rounded-3xl shadow-2xl">
+        <h4 class="display-4 font-weight-bold mb-3" style="font-family: 'Montserrat', sans-serif;">Savor the Best of Delicious Delights</h4>
+        <p class="lead" style="font-family: 'Lora', serif;">Browse through our exquisite selection and order your favorites in no time!</p>
+        <a href="{% url 'order' %}" class="btn btn-outline-black btn-lg mt-4">Start Ordering</a>
+    </div>
+</div>
+
+<!-- Food Order Section -->
+<div class="container mt-5" id="orderSection">
+    <h2 class="text-center mb-4">Order Your Favorite Foods</h2>
+    <div class="row">
+        {% for item in menu_items %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-danger font-weight-bold">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <a href="{% url 'order' %}?item={{ item.url_param }}" class="btn btn-danger btn-block">Order Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

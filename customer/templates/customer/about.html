@@ -1,0 +1,39 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container mb-5">
+    <!-- Header Section -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 text-center">
+            <h1 class="display-3 font-weight-bold text-black mt-4 mb-4">About Us</h1>
+            <p class="lead text-black">Learn about who we are and what drives us</p>
+        </div>
+    </div>
+
+    <!-- Content Section with Image on Left and Text on Right -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-5 col-sm-12">
+            <!-- Image Section -->
+            <img src="{% static 'bg-image.jpg' %}" class="img-fluid rounded shadow-lg" alt="About Us Image">
+        </div>
+        <div class="col-md-7 col-sm-12 p-4 text-justify text-black">
+            <!-- Text Content Section -->
+            <p class="mb-4">
+                We are a passionate team committed to providing innovative solutions and delivering excellence. Our journey began with a vision to make a meaningful impact through technology and creativity.
+            </p>
+            <p class="mb-4">
+                Our mission is to empower individuals and businesses by offering cutting-edge products and services that make everyday life easier and more efficient.
+            </p>
+            <p>
+                Join us as we continue to push the boundaries of what's possible and create a better tomorrow, today.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Call-to-Action Section -->
+<div class="text-center my-5">
+    <a href="#contact" class="btn btn-black btn-lg shadow-lg rounded-pill px-5 py-3">Get in Touch</a>
+</div>
+{% endblock content %}

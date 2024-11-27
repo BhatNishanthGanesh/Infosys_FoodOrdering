@@ -1,0 +1,76 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Restaurant Sign In" %}{% endblock %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center align-items-center">
+        <!-- Left Side: Restaurant Image -->
+        <div class="col-md-6 d-none d-md-block">
+            <img src="{% static 'bg-image.jpg' %}" alt="Restaurant" class="img-fluid rounded-left" style="object-fit: cover; height: 100%; border-radius: 10px;">
+        </div>
+
+        <!-- Right Side: Login Form and Content -->
+        <div class="col-md-6 col-sm-12">
+            <!-- Sign In Title Section -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 text-dark font-weight-bold">{% trans "Restaurant Sign In" %}</h1>
+                </div>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-12 text-center">
+                    <p class="lead text-muted">
+                        {% blocktrans %}
+                            Please sign in to manage the restaurant's details, view orders, or update menus.
+                        {% endblocktrans %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Custom Login Form Section -->
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-sm-12">
+                    <form method="POST" action="{% url 'custom_login' %}">
+                        {% csrf_token %}
+                        
+                        <!-- Custom Form Fields -->
+                        <div class="form-group">
+                            <label for="username">{% trans "Username" %}</label>
+                            <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">{% trans "Password" %}</label>
+                            <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+                        </div>
+
+                        <!-- Redirect Field (for next URL) -->
+                        {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <!-- Submit Button -->
+                        <div class="form-group text-center mt-4">
+                            <button class="btn btn-primary btn-block" type="submit">{% trans "Sign In" %}</button>
+                        </div>
+
+                        <!-- Sign Up Link -->
+                        <div class="text-center mt-4">
+                            <p class="text-muted">Don't have an account?</p>
+                            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Sign Up</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

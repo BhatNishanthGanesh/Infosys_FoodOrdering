@@ -1,0 +1,32 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.jumbotron:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+    z-index: 1; 
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(45deg, #2a2a2a, #1c1c1c);
+}
+
+.jumbotron .container {
+    position: relative; 
+    z-index: 2; 
+    color: white; 
+    text-align: center; 
+}
+
+.custom-dark-gray-bg {
+    background-color: #333;  
+}

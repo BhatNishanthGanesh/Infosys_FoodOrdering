@@ -1,0 +1,170 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-12 col-sm-12 p-4">
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Appetizers Section -->
+                <div class="pt-5">
+                    <h3 class="mb-4 text-black">Appetizers</h3>
+                    <div class="row">
+                        {% for app in appetizers %}
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card text-black shadow-sm p-2" style="height: 250px;">
+                                <img class="card-img-top rounded" src="{{ app.image.url }}" alt="{{ app.name }}" style="object-fit: cover; height: 120px;"/>
+                                <div class="card-body p-1">
+                                    <h5 class="card-title text-truncate" style="color:black;">{{ app.name }}</h5>
+                                    <p class="card-text text-truncate" style="font-size: 0.9rem;">{{ app.description }}</p>
+                                    <p class="font-weight-bold" style="color:black;">₹{{ app.price }}</p>
+                                    
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" name="items[]" class="form-check-input custom-checkbox" id="app-{{ app.pk }}" value="{{ app.pk }}">
+                                            <label class="form-check-label " for="app-{{ app.pk }}">Select</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr />
+                </div>
+
+                <!-- Entrees Section -->
+                <div class="pt-5">
+                    <h3 class="mb-4 text-black">Entrees</h3>
+                    <div class="row">
+                        {% for entre in entres %}
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card text-black shadow-sm p-2" style="height: 250px;">
+                                <img class="card-img-top rounded" src="{{ entre.image.url }}" alt="{{ entre.name }}" style="object-fit: cover; height: 120px;"/>
+                                <div class="card-body p-1">
+                                    <h5 class="card-title text-truncate" style="color:black;">{{ entre.name }}</h5>
+                                    <p class="card-text text-truncate" style="font-size: 0.9rem;">{{ entre.description }}</p>
+                                    <p class="font-weight-bold" style="color:black;">{{ entre.price }}</p>
+                                    
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" name="items[]" class="form-check-input custom-checkbox" id="entre-{{ entre.pk }}" value="{{ entre.pk }}">
+                                            <label class="form-check-label" for="entre-{{ entre.pk }}">Select</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr />
+                </div>
+
+                <!-- Desserts Section -->
+                <div class="pt-5">
+                    <h3 class="mb-4 text-black">Desserts</h3>
+                    <div class="row">
+                        {% for dessert in desserts %}
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card text-black shadow-sm p-2" style="height: 250px;">
+                                <img class="card-img-top rounded" src="{{ dessert.image.url }}" alt="{{ dessert.name }}" style="object-fit: cover; height: 120px;"/>
+                                <div class="card-body p-1">
+                                    <h5 class="card-title text-truncate" style="color:black;">{{ dessert.name }}</h5>
+                                    <p class="card-text text-truncate" style="font-size: 0.9rem;">{{ dessert.description }}</p>
+                                    <p class="font-weight-bold"  style="color:black;">{{ dessert.price }}</p>
+
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" name="items[]" class="form-check-input custom-checkbox" id="dessert-{{ dessert.pk }}" value="{{ dessert.pk }}">
+                                            <label class="form-check-label" for="dessert-{{ dessert.pk }}">Select</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr />
+                </div>
+
+                <!-- Drinks Section -->
+                <div class="pt-5">
+                    <h3 class="mb-4 text-black">Drinks</h3>
+                    <div class="row">
+                        {% for drink in drinks %}
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card text-black shadow-sm p-2" style="height: 250px;">
+                                <img class="card-img-top rounded" src="{{ drink.image.url }}" alt="{{ drink.name }}" style="object-fit: cover; height: 120px;"/>
+                                <div class="card-body p-1">
+                                    <h5 class="card-title text-truncate"  style="color:black;">{{ drink.name }}</h5>
+                                    <p class="card-text text-truncate" style="font-size: 0.9rem;">{{ drink.description }}</p>
+                                    <p class="font-weight-bold"  style="color:black;">{{ drink.price }}</p>
+
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" name="items[]" class="form-check-input custom-checkbox" id="drink-{{ drink.pk }}" value="{{ drink.pk }}">
+                                            <label class="form-check-label" for="drink-{{ drink.pk }}">Select</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr />
+                </div>
+
+                <!-- Customer Information Form -->
+                <div class="pt-5">
+                    <h3 class="mb-4 text-black">Customer Information</h3>
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input required class="form-control" type="text" placeholder="Your Name" name="name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input required class="form-control" type="email" placeholder="example@company.com" name="email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="street">Street Address</label>
+                        <input required class="form-control" type="text" placeholder="1234 Main St" name="street" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input required class="form-control" type="text" placeholder="San Francisco" name="city" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input required class="form-control" type="text" placeholder="CA" name="state" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="zip">Zip Code</label>
+                                <input required class="form-control" type="text" placeholder="94110" name="zip" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-4">
+                    <button class="btn btn-primary w-100" type="submit">Submit Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
